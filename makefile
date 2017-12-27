@@ -7,9 +7,13 @@ CC_FLAGS+=$(CC_EXTRA)
 
 .DEFAULT:all clean
 
-.PHONY:all clean $(TARGET) help
+.PHONY:all clean $(TARGET) help dirs
 
-all:$(TARGET)
+all: dirs $(TARGET)
+
+dirs:
+	if [[ ! -d obj ]]; then mkdir obj;fi
+	if [[ ! -d libs ]]; then mkdir libs;fi
 
 .c.o:
 	$(CC) $(CC_FLAGS) -c $< -o $@ 
