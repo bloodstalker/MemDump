@@ -1,0 +1,7 @@
+[
+    {
+        "command": "cc -c -o main.o main.c", 
+        "directory": "/home/bloodstalker/devi/abbatoir/hole68", 
+        "file": "/home/bloodstalker/devi/abbatoir/hole68/main.c"
+    }
+]
