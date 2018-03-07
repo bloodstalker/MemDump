@@ -1,4 +1,4 @@
-#/data/data/com.termux/files/usr/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 #/usr/bin/bash
 
-./main $(pgrep "$1")
+./main $(pgrep "$1") > ramdump
