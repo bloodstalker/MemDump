@@ -20,3 +20,6 @@ if you are building on linux for linux or android on android just run `make` and
 
 For windows:
 You can't use this to get RAM dumps on windows.<br/>
+
+## TODO
+windows support.<br/>
