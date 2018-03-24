@@ -1,4 +1,4 @@
-TARGET=main
+TARGET=ramdump
 CC=clang
 CC?=clang
 CC_FLAGS=
@@ -7,13 +7,9 @@ CC_FLAGS+=$(CC_EXTRA)
 
 .DEFAULT:all clean
 
-.PHONY:all clean $(TARGET) help dirs
+.PHONY:all clean help dirs
 
-all: dirs $(TARGET)
-
-dirs:
-	if [[ ! -d obj ]]; then mkdir obj;fi
-	if [[ ! -d libs ]]; then mkdir libs;fi
+all: $(TARGET)
 
 .c.o:
 	$(CC) $(CC_FLAGS) -c $< -o $@ 
@@ -22,7 +18,7 @@ android:
 	export NDK_PROJECT_PATH=`pwd`
 	ndk-build
 
-$(TARGET): main.o
+$(TARGET): $(TARGET).o
 	$(CC) $^ $(LD_FLAGS) -o $@
 
 clean:

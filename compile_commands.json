@@ -1,7 +1,7 @@
 [
     {
-        "command": "cc -c -o main.o main.c", 
-        "directory": "/home/bloodstalker/devi/abbatoir/hole68", 
-        "file": "/home/bloodstalker/devi/abbatoir/hole68/main.c"
+        "command": "cc -c -o ramdump.o ramdump.c", 
+        "directory": "/home/bloodstalker/extra/MemDump", 
+        "file": "/home/bloodstalker/extra/MemDump/ramdump.c"
     }
 ]

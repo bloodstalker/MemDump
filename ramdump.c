@@ -1,12 +1,36 @@
+
+/*first line is intentionally left blank*/
+/***********************************************************************************************************/
+#include <arpa/inet.h>
+#include <inttypes.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
+#include <unistd.h>
+#if  defined(_WIN32) || defined(_WIN64) || defined(__CYGWIN__)
+#include <process.h>
+#include <tlhelp32.h>
+#include <windows.h>
+#endif
+#if defined(__linux__) || defined(__ANDROID__)
 #include <sys/ptrace.h>
 #include <sys/socket.h>
 #include <sys/wait.h>
-#include <arpa/inet.h>
-#include <unistd.h>
+#endif
+/***********************************************************************************************************/
+#if  defined(_WIN32) || defined(_WIN64) || defined(__CYGWIN__)
+DWORD access = PRCOESS_VM_READ | PROCESS_QUERY_INFORMATION | PRCOESS_VM_WRITE | PRCOESS_VM_OPERATION;
+HANDLE proc = OpenProcess(access, FALSE, pid);
+void dump_memory_region() {
+  void* addr;
+  size_t written;
+  ReadProcessMemory(proc, addr, &value, sizeof(value), &written);
+}
 
+void write_memory_region(proc, addr, &value, sizeof(value), &written) {}
+#endif
+
+#if defined(__linux__) || defined(__ANDROID__)
 void dump_memory_region(FILE* pMemFile, unsigned long start_address, long length, int serverSocket) {
   unsigned long address;
   int pageLength = 4096;
@@ -22,6 +46,7 @@ void dump_memory_region(FILE* pMemFile, unsigned long start_address, long length
     }
   }
 }
+#endif
 
 int main(int argc, char **argv) {
     if (argc == 2 || argc == 4) {
@@ -86,3 +111,6 @@ int main(int argc, char **argv) {
     exit(0);
   }
 }
+/***********************************************************************************************************/
+/*last line is intentionally left blank*/
+
